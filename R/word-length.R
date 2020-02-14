@@ -3,6 +3,16 @@ add_russian_word_length <- function(words) {
     dplyr::mutate(russian_word_length = stringr::str_length(russian) - 1)
 }
 
+filter_by_word_length <- function(words, max_word_length) {
+  words %>%
+    dplyr::filter(russian_word_length <= max_word_length)
+}
+
+randomize_word_order <- function(words) {
+  words %>%
+    dplyr::sample_frac()
+}
+
 cum_word_length <- function(words, word_length) {
   words %>%
     dplyr::filter(russian_word_length <= word_length) %>%
