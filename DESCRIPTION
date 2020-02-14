@@ -15,4 +15,9 @@ Imports:
     magrittr,
     dplyr,
     stringr,
-    ggplot2
+    ggplot2,
+    readr
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

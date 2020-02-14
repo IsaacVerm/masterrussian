@@ -1,0 +1,56 @@
+---
+title: "master-russian-word-length"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{master-russian-word-length}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(masterrussian)
+library(magrittr)
+```
+
+# Setup
+
+This vignette helps analysing the [1000 most common words](http://masterrussian.com/vocabulary/most_common_words.htm) from the masterrussian site.
+
+```{r}
+words <-
+  words %>% add_russian_word_length()
+
+head(words)
+```
+
+# How long are the most common words?
+
+```{r}
+words %>% 
+  histogram_word_length()
+```
+
+As you can see the numbers of characters which occurs the most is 7. If we focus only on those words with 7 or less characters, we can already cover 3/4 of the 1000 most common words.
+
+```{r}
+cum_word_length(words, 7)
+```
+
+This is just about 4000 characters which seems very feasible.If you learn just a bit more than 10 characters per day, you could do this in about a year.
+
+# Create training schedule
+
+I think I can do about 100 characters per day. This would mean 3/4 of the most common words can be covered in 40 days.
+
+```{r}
+words %>% write_word_length_group()
+```
+
+

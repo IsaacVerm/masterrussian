@@ -16,7 +16,7 @@ randomize_word_order <- function(words) {
 write_word_length_group <- function(words) {
   words %>%
     dplyr::group_by(russian_word_length) %>%
-    dplyr::group_walk(~ write_csv(.x, paste0("data/words_", .y$russian_word_length, "_.csv")))
+    dplyr::group_walk(~ readr::write_csv(.x, paste0("words_", .y$russian_word_length, ".csv")))
 }
 
 cum_word_length <- function(words, word_length) {
